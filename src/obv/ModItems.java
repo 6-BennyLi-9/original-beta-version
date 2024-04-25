@@ -28,5 +28,7 @@ public class ModItems{
         ionicPhaseFabric=new Item("IonicPhaseFabric");
         fullMobileBattery=new Item("fullMobileBattery");
         emptyMobileBattery=new Item("emptyMobileBattery");
+
+        setupItemConfig();
     }
 }
