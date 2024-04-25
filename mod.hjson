@@ -1,0 +1,23 @@
+#the mod name as displayed in-game
+displayName: "Original Beta Version"
+
+#the internal name of your mod
+name: "original-beta-version"
+
+#your name
+author: "Benny_Li"
+
+#the fully qualified main class of the mod
+main: "obv.obvJavaMod"
+
+#the mod description as seen in the mod dialog
+description: "加入了许多有趣的东西"
+
+#the mod version
+version: 0.1.0
+
+#the minimum game build required to run this mod
+minGameVersion: 146
+
+#this is a java mod
+java: true
