@@ -4,7 +4,7 @@ import mindustry.mod.Mod;
 public class obvJavaMod extends Mod {
     public static ModItems modItems;
     public obvJavaMod() {
-        Log.info("Loaded Original Beta Version constructor.");
+        Log.info("[OBV]Loaded Original Beta Version constructor.");
     }
     public void ModInit(){
         modItems=new ModItems();
@@ -12,8 +12,8 @@ public class obvJavaMod extends Mod {
     }
     @Override
     public void loadContent() {
-        Log.info("Loading content.");
+        Log.info("[OBV]Loading content.");
         ModInit();
-        Log.info("DONE");
+        Log.info("[OBV]DONE");
     }
 }
