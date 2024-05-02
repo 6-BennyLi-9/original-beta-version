@@ -1,5 +1,6 @@
 package obv;
 import mindustry.type.Item;
+import arc.util.Log;
 public class ModItems{
     public static Item iron;
     public static Item glass;
@@ -22,7 +23,8 @@ public class ModItems{
         ionicPhaseFabric.radioactivity=5;
     }
     public void setupItemScript(){
-
+        Log.info("Full Icom will like this:"+iron.fullIcon.toString());
+        Log.info("ui Icon will like this:"+iron.uiIcon.toString());
         /*
          * fullIcon =
             Core.atlas.find(getContentType().name() + "-" + name + "-full",
