@@ -1,7 +1,7 @@
 package obv;
 import mindustry.type.Item;
 import arc.util.Log;
-public class ModItems{
+public class ModItems implements ContentList{
     public static ModUtils utils;
 
     public static Item iron;

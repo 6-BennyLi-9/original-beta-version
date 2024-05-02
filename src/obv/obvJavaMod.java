@@ -3,13 +3,19 @@ import arc.util.Log;
 import mindustry.mod.Mod;
 public class obvJavaMod extends Mod {
     public static ModItems modItems;
+    public static ModBlocks modBlocks;
+    public static ContentList[] modContents = {
+        modItems=new ModItems(),
+        modBlocks=new ModBlocks()
+    };
     public obvJavaMod() {
         Log.info("[OBV]Loaded Original Beta Version constructor.");
     }
     public void ModInit(){
         ModUtils.debugMode=false;
-        modItems=new ModItems();
-        modItems.load();
+        for(ContentList content:modContents){
+            content.load();
+        }
     }
     @Override
     public void loadContent() {
