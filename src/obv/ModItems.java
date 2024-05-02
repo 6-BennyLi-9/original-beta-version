@@ -21,6 +21,19 @@ public class ModItems{
         //放射性，与RTG直接相关
         ionicPhaseFabric.radioactivity=5;
     }
+    public void setupItemScript(){
+
+        /*
+         * fullIcon =
+            Core.atlas.find(getContentType().name() + "-" + name + "-full",
+            Core.atlas.find(name + "-full",
+            Core.atlas.find(name,
+            Core.atlas.find(getContentType().name() + "-" + name,
+            Core.atlas.find(name + "1")))));
+            uiIcon = Core.atlas.find(getContentType().name() + "-" + name + "-ui", fullIcon);
+         */
+        
+    }
 //    @Override
     public void load() {
         iron=new Item("iron");
@@ -30,5 +43,6 @@ public class ModItems{
         emptyMobileBattery=new Item("emptyMobileBattery");
 
         setupItemConfig();
+        setupItemScript();
     }
 }
