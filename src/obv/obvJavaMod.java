@@ -7,6 +7,7 @@ public class obvJavaMod extends Mod {
         Log.info("[OBV]Loaded Original Beta Version constructor.");
     }
     public void ModInit(){
+        ModUtils.debugMode=false;
         modItems=new ModItems();
         modItems.load();
     }

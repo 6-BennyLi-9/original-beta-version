@@ -3,6 +3,8 @@ import arc.graphics.Color;
 import arc.util.Log;
 
 public class ModUtils {
+    public static boolean debugMode=true;
+
     public Color RGBColorSet100(double R,double G,double B){
         Color result;
         result=new Color((float)R/100,(float)G/100,(float)B/100);
@@ -18,7 +20,7 @@ public class ModUtils {
         int r=mark>>16;
         int g=(mark>>8)-(r<<8);
         int b=(mark)-(g<<8)-(r<<16);
-        Log.info("Try RGB:"+r+","+g+","+b+"mark="+mark);
+        if(ModUtils.debugMode)Log.info("Try RGB:"+r+","+g+","+b+"mark="+mark);
         result=RGBColorSet256(r,g,b);
         return result;
     }

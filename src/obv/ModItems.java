@@ -1,6 +1,5 @@
 package obv;
 import mindustry.type.Item;
-import arc.graphics.Color;
 import arc.util.Log;
 public class ModItems{
     public static ModUtils utils;
@@ -19,11 +18,8 @@ public class ModItems{
         emptyMobileBattery=new Item("emptyMobileBattery");
     }
     private void setupItemConfig(){
-        //强度
-        iron.hardness=100;
-        ionicPhaseFabric.hardness=12;
-        fullMobileBattery.hardness=5;
-        emptyMobileBattery.hardness=5;
+        //所需钻头强度
+        iron.hardness=1;
 
         //可燃性，大于0.3会燃烧
         fullMobileBattery.flammability=1;
