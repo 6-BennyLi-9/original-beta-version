@@ -8,6 +8,7 @@ public class ModItems implements ContentList{
     public static Item ionicPhaseFabric;
     public static Item fullMobileBattery;
     public static Item emptyMobileBattery;
+    private static float unitCost=20f;
 
     private void initItem(){
         iron=new Item("iron");
@@ -26,6 +27,11 @@ public class ModItems implements ContentList{
 
         //放射性，与RTG直接相关
         ionicPhaseFabric.radioactivity=5;
+
+        //花费，实际上指的是每单位物品所带来的制造时间
+        iron.cost=8*unitCost;
+        glass.cost=16*unitCost;
+        ionicPhaseFabric.cost=23*unitCost;
     }
     private void setupItemColorConfig() {
         iron.color=utils.RGBColorSetWitchHTMLMark(0xaeb7ff);
