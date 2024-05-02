@@ -6,7 +6,7 @@ public class obvJavaMod extends Mod {
     public static ModBlocks modBlocks;
     public static ContentList[] modContents = {
         modItems=new ModItems(),
-        modBlocks=new ModBlocks(null)
+        modBlocks=new ModBlocks()
     };
     public obvJavaMod() {
         Log.info("[OBV]Loaded Original Beta Version constructor.");

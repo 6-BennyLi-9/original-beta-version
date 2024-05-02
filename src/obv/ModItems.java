@@ -1,6 +1,5 @@
 package obv;
 import mindustry.type.Item;
-import arc.util.Log;
 public class ModItems implements ContentList{
     public static ModUtils utils;
 
@@ -28,15 +27,6 @@ public class ModItems implements ContentList{
         //放射性，与RTG直接相关
         ionicPhaseFabric.radioactivity=5;
     }
-    private void setupItemScript(){
-        //TODO:一点卵用没有
-        if(iron.fullIcon!=null)Log.info("[OBV]Full Icom will like this:"+iron.fullIcon.toString());
-        else Log.info("[OBV]test Full Icon is null!");
-        if(iron.uiIcon!=null)Log.info("[OBV]ui Icon will like this:"+iron.uiIcon.toString());
-        else Log.info("[OBV]test ui Icon is null!");
-        Log.info("iron's iconID="+iron.iconId);
-
-    }
     private void setupItemColorConfig() {
         iron.color=utils.RGBColorSetWitchHTMLMark(0xaeb7ff);
         glass.color=utils.RGBColorSetWitchHTMLMark(0xdcdcff);
@@ -50,7 +40,6 @@ public class ModItems implements ContentList{
 
         initItem();
         setupItemConfig();
-        setupItemScript();
         setupItemColorConfig();
     }
     
