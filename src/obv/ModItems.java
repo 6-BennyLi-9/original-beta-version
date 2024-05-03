@@ -1,6 +1,7 @@
 package obv;
+import arc.util.Log;
 import mindustry.type.Item;
-public class ModItems implements ContentList{
+public class ModItems implements ModContent{
     public static ModUtils utils;
 
     public static Item iron;
@@ -8,7 +9,7 @@ public class ModItems implements ContentList{
     public static Item ionicPhaseFabric;
     public static Item fullMobileBattery;
     public static Item emptyMobileBattery;
-    private static float unitCost=20f;
+    private static float unitCost=2f;
 
     private void initItem(){
         iron=new Item("iron");
@@ -42,11 +43,16 @@ public class ModItems implements ContentList{
     }
 //    @Override
     public void load() {
+        Log.info("[UBV-ITEMS]Start init");
         utils=new ModUtils();
 
         initItem();
+
+        Log.info("[UBV-ITEMS]Adding config");
         setupItemConfig();
         setupItemColorConfig();
+
+        Log.info("[OBV-ITEMS]Done!");
     }
     
 }

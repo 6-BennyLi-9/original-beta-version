@@ -1,12 +1,14 @@
-package obv;
+package obv.Buidings;
+
+import arc.util.Log;
 import mindustry.content.Items;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.meta.BuildVisibility;
+import obv.ModItems;
 
-public class ModBlocks implements ContentList{
-
+public class ModWalls extends ModBlocksUtils{
     public static Wall bigIronWall;
     public static Wall smallIronWall;
 
@@ -34,10 +36,14 @@ public class ModBlocks implements ContentList{
         bigIronWall.buildCostMultiplier=1.25f;
         smallIronWall.buildCostMultiplier=0.8f;
     }
-    public void load(){
 
+    public void init(){
+        Log.info("[OBV-WALLS]Start init");
         initWall();
+
+        Log.info("[OBV-WALLS]Adding config");
         setupWallConfig();
 
+        Log.info("[OBV-WALLS]Done!");
     }
 }
