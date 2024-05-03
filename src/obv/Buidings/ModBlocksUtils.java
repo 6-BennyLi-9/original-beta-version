@@ -11,6 +11,6 @@ public class ModBlocksUtils implements ModContent{
         
         utils_walls.init();
 
-        Log.info("[OBV-ITEMS]Done!");
+        Log.info("[OBV-BLOCKS]Done!");
     }
 }
