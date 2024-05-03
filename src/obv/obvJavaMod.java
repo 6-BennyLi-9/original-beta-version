@@ -10,11 +10,8 @@ public class obvJavaMod extends Mod {
         modItems=new ModItems(),
         modBlocksUtils=new ModBlocksUtils()
     };
-    public obvJavaMod() {
-        Log.info("[OBV]Loaded Original Beta Version constructor.");
-    }
     public void ModInit(){
-        ModUtils.debugMode=false;
+        ModUtils.debugMode=true;
         for(ModContent content:modContents){
             content.load();
         }
