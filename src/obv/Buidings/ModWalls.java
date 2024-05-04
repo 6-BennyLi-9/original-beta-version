@@ -4,22 +4,23 @@ import arc.util.Log;
 import mindustry.content.Items;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
+import mindustry.world.blocks.defense.ShieldWall;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.consumers.ConsumePower;
 import mindustry.world.meta.BuildVisibility;
 import obv.ModItems;
 
 public class ModWalls extends ModBlocksUtils{
-    public static Wall bigIronWall;
-    public static Wall smallIronWall;
-    public static Wall bigIonicChargeWall;
-    public static Wall smallIonicChargeWall;
+    //T1
+    public Wall bigIronWall,smallIronWall;
+    //T2
+    public ShieldWall bigIonicChargeWall,smallIonicChargeWall;
 
     private void initWall(){
         bigIronWall=new Wall("bigIronWall");
         smallIronWall=new Wall("smallIronWall");
-        bigIonicChargeWall=new Wall("bigIonicChargeWall");
-        smallIonicChargeWall=new Wall("smallIonicChargeWall");
+        bigIonicChargeWall=new ShieldWall("bigIonicChargeWall");
+        smallIonicChargeWall=new ShieldWall("smallIonicChargeWall");
     }
     private void setupWallConfig(){
         bigIronWall.size=2;
@@ -32,11 +33,41 @@ public class ModWalls extends ModBlocksUtils{
         bigIonicChargeWall.health=4800;
         smallIonicChargeWall.health=1200;
 
+        //可以存储电力
         bigIonicChargeWall.hasPower=true;
         smallIonicChargeWall.hasPower=true;
 
+        //电力设置
         bigIonicChargeWall.consPower=new ConsumePower(100,1000,true);
+        bigIonicChargeWall.consumePower(500f/60f);
+        bigIonicChargeWall.hasPower=true;
+        bigIonicChargeWall.conductivePower=true;
         smallIonicChargeWall.consPower=new ConsumePower(100,250,true);
+        smallIonicChargeWall.consumePower(125f/60f);
+        smallIonicChargeWall.hasPower=true;
+        smallIonicChargeWall.conductivePower=true;
+
+        //探测迷雾能力
+        bigIonicChargeWall.fogRadius=5;
+        smallIonicChargeWall.fogRadius=2;
+
+        //伤害吸收
+        smallIronWall.armor=1f;
+        bigIronWall.armor=4f;
+        smallIonicChargeWall.armor=4f;
+        bigIonicChargeWall.armor=16f;
+        //TODO:盾墙必须有对应"-glow"的贴图
+        //盾容量
+        smallIonicChargeWall.shieldHealth=50f;
+        bigIonicChargeWall.shieldHealth=200f;
+
+        //盾恢复速度
+        smallIonicChargeWall.regenSpeed=1f;
+        bigIonicChargeWall.regenSpeed=16f;
+
+        //盾损坏后恢复时间
+        smallIonicChargeWall.breakCooldown=10f*10f;
+        bigIonicChargeWall.breakCooldown=20f*10f;
 
         bigIronWall.requirements(Category.defense,BuildVisibility.shown,new ItemStack[]{
             new ItemStack(ModItems.iron,5),

@@ -12,6 +12,7 @@ public class obvJavaMod extends Mod {
     };
     public obvJavaMod() {
         Log.info("[OBV]Loaded Original Beta Version constructor.");
+        //I'm really can't believe that this had never used!!!
     }
     public void ModInit(){
         ModUtils.debugMode=false;
