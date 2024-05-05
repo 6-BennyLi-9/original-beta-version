@@ -1,7 +1,7 @@
 package obv;
-import mindustry.type.Item;
 import arc.util.Log;
-public class ModItems implements ContentList{
+import mindustry.type.Item;
+public class ModItems implements ModContent{
     public static ModUtils utils;
 
     public static Item iron;
@@ -9,6 +9,7 @@ public class ModItems implements ContentList{
     public static Item ionicPhaseFabric;
     public static Item fullMobileBattery;
     public static Item emptyMobileBattery;
+    private static float unitCost=2f;
 
     private void initItem(){
         iron=new Item("iron");
@@ -27,15 +28,11 @@ public class ModItems implements ContentList{
 
         //放射性，与RTG直接相关
         ionicPhaseFabric.radioactivity=5;
-    }
-    private void setupItemScript(){
-        //TODO:一点卵用没有
-        if(iron.fullIcon!=null)Log.info("[OBV]Full Icom will like this:"+iron.fullIcon.toString());
-        else Log.info("[OBV]test Full Icon is null!");
-        if(iron.uiIcon!=null)Log.info("[OBV]ui Icon will like this:"+iron.uiIcon.toString());
-        else Log.info("[OBV]test ui Icon is null!");
-        Log.info("iron's iconID="+iron.iconId);
 
+        //花费，实际上指的是每单位物品所带来的制造时间
+        iron.cost=4*unitCost;
+        glass.cost=5*unitCost;
+        ionicPhaseFabric.cost=5*unitCost;
     }
     private void setupItemColorConfig() {
         iron.color=utils.RGBColorSetWitchHTMLMark(0xaeb7ff);
@@ -46,12 +43,16 @@ public class ModItems implements ContentList{
     }
 //    @Override
     public void load() {
+        Log.info("[UBV-ITEMS]Start init");
         utils=new ModUtils();
 
         initItem();
+
+        Log.info("[UBV-ITEMS]Adding config");
         setupItemConfig();
-        setupItemScript();
         setupItemColorConfig();
+
+        Log.info("[OBV-ITEMS]Done!");
     }
     
 }

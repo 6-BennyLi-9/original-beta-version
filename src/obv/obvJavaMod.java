@@ -1,22 +1,26 @@
 package obv;
 import arc.util.Log;
 import mindustry.mod.Mod;
+import obv.Buidings.ModBlocksUtils;
 public class obvJavaMod extends Mod {
     public static ModItems modItems;
-    public static ModBlocks modBlocks;
-    public static ContentList[] modContents = {
+    public static ModBlocksUtils modBlocksUtils;
+    
+    public static ModContent[] modContents = {
         modItems=new ModItems(),
-        modBlocks=new ModBlocks()
+        modBlocksUtils=new ModBlocksUtils()
     };
     public obvJavaMod() {
         Log.info("[OBV]Loaded Original Beta Version constructor.");
+        //I'm really can't believe that this had never used!!!
     }
     public void ModInit(){
         ModUtils.debugMode=false;
-        for(ContentList content:modContents){
+        for(ModContent content:modContents){
             content.load();
         }
     }
+
     @Override
     public void loadContent() {
         Log.info("[OBV]Loading content.");
