@@ -56,14 +56,13 @@ public class ModWalls extends ModBlocksUtils{
         bigIronWall.armor=4f;
         smallIonicChargeWall.armor=4f;
         bigIonicChargeWall.armor=16f;
-        //TODO:盾墙必须有对应"-glow"的贴图
         //盾容量
         smallIonicChargeWall.shieldHealth=50f;
         bigIonicChargeWall.shieldHealth=200f;
 
-        //盾恢复速度
-        smallIonicChargeWall.regenSpeed=1f;
-        bigIonicChargeWall.regenSpeed=16f;
+        //盾恢复速度 1f=60hp/s
+        smallIonicChargeWall.regenSpeed=0.5f;
+        bigIonicChargeWall.regenSpeed=1f;
 
         //盾损坏后恢复时间
         smallIonicChargeWall.breakCooldown=10f*10f;
