@@ -4,6 +4,7 @@ import arc.Events;
 import arc.graphics.Color;
 import arc.math.Mathf;
 import arc.util.Nullable;
+import arc.util.Time;
 import mindustry.content.Fx;
 import mindustry.entities.Effect;
 import mindustry.game.EventType.GeneratorPressureExplodeEvent;
@@ -15,7 +16,6 @@ import mindustry.world.consumers.ConsumeLiquidFilter;
 import mindustry.world.meta.Stat;
 import mindustry.world.meta.StatUnit;
 import mindustry.world.meta.StatValues;
-import arc.util.*;
 
 public class assemblyGeneratorB extends PowerGenerator{
 

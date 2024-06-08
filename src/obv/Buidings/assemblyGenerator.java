@@ -9,7 +9,6 @@ import arc.math.geom.Geometry;
 import arc.struct.EnumSet;
 import arc.struct.Seq;
 import arc.util.Eachable;
-import arc.util.Log;
 import arc.util.Nullable;
 import arc.util.Time;
 import arc.util.io.Reads;
