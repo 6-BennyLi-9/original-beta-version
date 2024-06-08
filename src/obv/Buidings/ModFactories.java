@@ -6,7 +6,7 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.meta.BuildVisibility;
-import obv.ModItems;
+import obv.ItemAndLiquid.ModItems;
 
 public class ModFactories extends ModBlocksUtils{
     public GenericCrafter batteryBiulder,charger;

@@ -8,7 +8,7 @@ import mindustry.world.blocks.defense.ShieldWall;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.consumers.ConsumePower;
 import mindustry.world.meta.BuildVisibility;
-import obv.ModItems;
+import obv.ItemAndLiquid.ModItems;
 
 public class ModWalls extends ModBlocksUtils{
     //T1

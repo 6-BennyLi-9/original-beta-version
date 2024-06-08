@@ -2,6 +2,8 @@ package obv;
 import arc.util.Log;
 import mindustry.mod.Mod;
 import obv.Buidings.ModBlocksUtils;
+import obv.ItemAndLiquid.ModItems;
+
 public class obvJavaMod extends Mod {
     public static ModItems modItems;
     public static ModBlocksUtils modBlocksUtils;

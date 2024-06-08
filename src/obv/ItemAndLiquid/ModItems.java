@@ -1,7 +1,10 @@
-package obv;
+package obv.ItemAndLiquid;
 import arc.util.Log;
 import mindustry.type.Item;
-public class ModItems implements ModContent{
+import obv.ModContent;
+import obv.ModUtils;
+
+public class ModItems implements ModContent {
     public static ModUtils utils;
 
     public static Item iron;
@@ -9,7 +12,7 @@ public class ModItems implements ModContent{
     public static Item ionicPhaseFabric;
     public static Item fullMobileBattery;
     public static Item emptyMobileBattery;
-    private static float unitCost=2f;
+    private static final float unitCost=2f;
 
     private void initItem(){
         iron=new Item("iron");

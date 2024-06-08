@@ -8,6 +8,12 @@ import arc.math.Mathf;
 import arc.math.geom.Geometry;
 import arc.struct.EnumSet;
 import arc.struct.Seq;
+import arc.util.Eachable;
+import arc.util.Log;
+import arc.util.Nullable;
+import arc.util.Time;
+import arc.util.io.Reads;
+import arc.util.io.Writes;
 import mindustry.Vars;
 import mindustry.content.Fx;
 import mindustry.entities.Effect;
@@ -19,33 +25,20 @@ import mindustry.logic.LAccess;
 import mindustry.type.Item;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
-import mindustry.world.blocks.power.PowerGenerator;
+import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.world.consumers.ConsumeItemFilter;
 import mindustry.world.consumers.ConsumeLiquidFilter;
 import mindustry.world.draw.DrawBlock;
 import mindustry.world.draw.DrawDefault;
+import mindustry.world.draw.DrawHeatOutput;
+import mindustry.world.draw.DrawMulti;
 import mindustry.world.meta.BlockFlag;
 import mindustry.world.meta.Stat;
 import mindustry.world.meta.StatUnit;
 import mindustry.world.meta.StatValues;
-import arc.util.*;
-import arc.util.io.Reads;
-import arc.util.io.Writes;
 
-public class assemblyGenerator extends PowerGenerator{
-    public float itemDuration = 120f;
-
-    public float warmupSpeed = 0.05f;
-    public float effectChance = 0.01f;
-    public Effect generateEffect = Fx.none, consumeEffect = Fx.none;
-    public float generateEffectRange = 3f;
-
-    /** If true, this block explodes when outputLiquid exceeds capacity. */
-    public boolean explodeOnFull = false;
-
-    public @Nullable ConsumeItemFilter filterItem;
-    public @Nullable ConsumeLiquidFilter filterLiquid;
-    public boolean outputsPower;
+public class assemblyGenerator extends ConsumeGenerator{
+    public float craftTime;
 
     /** Written to outputItems as a single-element array if outputItems is null. */
     public @Nullable ItemStack outputItem;
@@ -56,6 +49,7 @@ public class assemblyGenerator extends PowerGenerator{
     public @Nullable LiquidStack outputLiquid;
     /** Overwrites outputLiquid if not null. */
     public @Nullable LiquidStack[] outputLiquids;
+
     /** Liquid output directions, specified in the same order as outputLiquids. Use -1 to dump in every direction. Rotations are relative to block. */
     public int[] liquidOutputDirections = {-1};
 
@@ -63,10 +57,14 @@ public class assemblyGenerator extends PowerGenerator{
     public boolean dumpExtraLiquid = true;
     public boolean ignoreLiquidFullness = false;
 
-    public float craftTime = 80;
     public Effect craftEffect = Fx.none;
     public Effect updateEffect = Fx.none;
     public float updateEffectChance = 0.04f;
+    public float warmupSpeed = 0.019f;
+
+    public float powerProduction = 0f;
+    public boolean outputsPower = false;
+
     /** Only used for legacy cultivator blocks. */
     public boolean legacyReadWarmup = false;
 
@@ -74,6 +72,11 @@ public class assemblyGenerator extends PowerGenerator{
 
     public assemblyGenerator(String name){
         super(name);
+
+        drawer = new DrawMulti(new DrawDefault(), new DrawHeatOutput());
+        rotateDraw = false;
+        rotate = true;
+        canOverdrive = false;
         update = true;
         solid = true;
         hasItems = true;
@@ -87,19 +90,43 @@ public class assemblyGenerator extends PowerGenerator{
     @Override
     public void setStats(){
         stats.timePeriod = craftTime;
+        super.setStats();
         if((hasItems && itemCapacity > 0) || outputItems != null){
             stats.add(Stat.productionTime, craftTime / 60f, StatUnit.seconds);
         }
 
+        if(outputItems != null){
+            stats.add(Stat.output, StatValues.items(craftTime, outputItems));
+        }
+
         if(outputLiquids != null){
+            // stats.add(Stat.output, StatValues.liquids(1f, outputLiquids));
             stats.add(Stat.output, StatValues.liquid(outputLiquid.liquid, outputLiquid.amount * 60f, true));
         }
-        super.setStats();
+    }
+
+    @Override
+    public boolean rotatedOutput(int x, int y){
+        return false;
     }
 
     @Override
     public void setBars(){
         super.setBars();
+
+        // if(outputLiquid!=null&&outputLiquids!=null){
+        //     removeBar("liquid");
+
+        //     addLiquidBar(outputLiquid.liquid);
+        //     for(var stack : outputLiquids){
+        //         addLiquidBar(stack.liquid);
+        //     }
+        //     return;
+        // }
+
+        if(outputLiquid != null){
+            addLiquidBar(outputLiquid.liquid);
+        }
 
         //set up liquid bars for liquid outputs
         if(outputLiquids != null && outputLiquids.length > 0){
@@ -107,15 +134,7 @@ public class assemblyGenerator extends PowerGenerator{
             removeBar("liquid");
 
             //then display output buffer
-            for(var stack : outputLiquids){
-                addLiquidBar(stack.liquid);
-            }
         }
-    }
-
-    @Override
-    public boolean rotatedOutput(int x, int y){
-        return false;
     }
 
     @Override
@@ -127,11 +146,17 @@ public class assemblyGenerator extends PowerGenerator{
 
     @Override
     public void init(){
+        filterItem = findConsumer(c -> c instanceof ConsumeItemFilter);
+        filterLiquid = findConsumer(c -> c instanceof ConsumeLiquidFilter);
+
         if(outputItems == null && outputItem != null){
             outputItems = new ItemStack[]{outputItem};
+            hasItems=true;
         }
         if(outputLiquids == null && outputLiquid != null){
             outputLiquids = new LiquidStack[]{outputLiquid};
+            outputsLiquid = true;
+            hasLiquids = true;
         }
         //write back to outputLiquid, as it helps with sensing
         if(outputLiquid == null && outputLiquids != null && outputLiquids.length > 0){
@@ -139,25 +164,16 @@ public class assemblyGenerator extends PowerGenerator{
         }
         outputsLiquid = outputLiquids != null;
 
-        if(outputItems != null) hasItems = true;
-        if(outputLiquids != null) hasLiquids = true;
-
-        super.init();
-        //
-        filterItem = findConsumer(c -> c instanceof ConsumeItemFilter);
-        filterLiquid = findConsumer(c -> c instanceof ConsumeLiquidFilter);
-
-        if(outputLiquid != null){
-            outputsLiquid = true;
-            hasLiquids = true;
-        }
-
         if(explodeOnFull && outputLiquid != null && explosionPuddleLiquid == null){
             explosionPuddleLiquid = outputLiquid.liquid;
         }
 
+        if(outputItems != null) hasItems = true;
+        if(outputLiquids != null) hasLiquids = true;
+
         emitLight = true;
         lightRadius = 65f * size;
+        super.init();
     }
 
     @Override
@@ -185,14 +201,12 @@ public class assemblyGenerator extends PowerGenerator{
         if(outputLiquids != null){
             for(int i = 0; i < outputLiquids.length; i++){
                 int dir = liquidOutputDirections.length > i ? liquidOutputDirections[i] : -1;
-                
-                int tilesize=Vars.tilesize;
 
                 if(dir != -1){
                     Draw.rect(
                         outputLiquids[i].liquid.fullIcon,
-                        x + Geometry.d4x(dir + rotation) * (size * tilesize / 2f + 4),
-                        y + Geometry.d4y(dir + rotation) * (size * tilesize / 2f + 4),
+                        x + Geometry.d4x(dir + rotation) * (size * Vars.tilesize / 2f + 4),
+                        y + Geometry.d4y(dir + rotation) * (size * Vars.tilesize / 2f + 4),
                         8f, 8f
                     );
                 }
@@ -200,24 +214,11 @@ public class assemblyGenerator extends PowerGenerator{
         }
     }
 
-    public class assemblyGeneratorBuild extends GeneratorBuild{
+    public class assemblyGeneratorBuild extends ConsumeGeneratorBuild{
+        public float warmup, totalTime, efficiencyMultiplier = 1f;
+
         public float progress;
         public float totalProgress;
-        public float warmup;
-        public float totalTime;
-        public float efficiencyMultiplier = 1f;
-
-        @Override
-        public void draw(){
-            drawer.draw(this);
-        }
-
-        @Override
-        public void drawLight(){
-            super.drawLight();
-            drawer.drawLight(this);
-            Drawf.light(x, y, (60f + Mathf.absin(10f, 5f)) * size, Color.orange, 0.5f * warmup);
-        }
 
         @Override
         public void updateEfficiencyMultiplier(){
@@ -232,10 +233,19 @@ public class assemblyGenerator extends PowerGenerator{
 
         @Override
         public void updateTile(){
+            super.updateTile();
+
+            boolean valid = efficiency > 0;
+
+            warmup = Mathf.lerpDelta(warmup, valid ? 1f : 0f, warmupSpeed);
+
+            productionEfficiency = efficiency * efficiencyMultiplier;
+            totalTime += warmup * Time.delta;
+
             if(efficiency > 0){
 
                 progress += getProgressIncrease(craftTime);
-                warmup = Mathf.approachDelta(warmup, warmup(), warmupSpeed);
+                warmup = Mathf.approachDelta(warmup, 1f, warmupSpeed);
 
                 //continuously output based on efficiency
                 if(outputLiquids != null){
@@ -251,21 +261,6 @@ public class assemblyGenerator extends PowerGenerator{
             }else{
                 warmup = Mathf.approachDelta(warmup, 0f, warmupSpeed);
             }
-
-            //TODO may look bad, revert to edelta() if so
-            totalProgress += warmup * Time.delta;
-
-            if(progress >= 1f){
-                craft();
-            }
-
-
-            boolean valid = efficiency > 0;
-
-            warmup = Mathf.lerpDelta(warmup, valid ? 1f : 0f, warmupSpeed);
-
-            productionEfficiency = efficiency * efficiencyMultiplier;
-            totalTime += warmup * Time.delta;
 
             //randomly produce the effect
             if(valid && Mathf.chanceDelta(effectChance)){
@@ -289,9 +284,16 @@ public class assemblyGenerator extends PowerGenerator{
                     Events.fire(new GeneratorPressureExplodeEvent(this));
                 }
             }
+            
 
             //generation time always goes down, but only at the end so consumeTriggerValid doesn't assume fake items
             generateTime -= delta() / itemDuration;
+            totalProgress += warmup * Time.delta;
+
+            if(progress >= 1f){
+                craft();
+            }
+
             dumpOutputs();
         }
 
@@ -307,7 +309,19 @@ public class assemblyGenerator extends PowerGenerator{
 
         @Override
         public float totalProgress(){
-            return totalProgress;//totalPrograss
+            //return totalProgress;
+            return totalTime;
+        }
+
+        @Override
+        public void draw(){
+            drawer.draw(this);
+        }
+
+        @Override
+        public void drawLight(){
+            drawer.drawLight(this);
+            Drawf.light(x, y, (60f + Mathf.absin(10f, 5f)) * size, Color.orange, 0.5f * warmup);
         }
 
         @Override
@@ -397,7 +411,6 @@ public class assemblyGenerator extends PowerGenerator{
                     dumpLiquid(outputLiquids[i].liquid, 2f, dir);
                 }
             }
-
         }
 
         @Override
@@ -438,6 +451,5 @@ public class assemblyGenerator extends PowerGenerator{
             warmup = read.f();
             if(legacyReadWarmup) read.f();
         }
-
     }
 }
