@@ -3,10 +3,8 @@ package obv.ItemAndLiquid;
 import arc.util.Log;
 import mindustry.type.Liquid;
 import obv.ModContent;
-import obv.ModUtils;
 
 public class ModLiquids implements ModContent {
-    public static ModUtils utils;
 
     public static Liquid essentialOil;
     public static Liquid tila;

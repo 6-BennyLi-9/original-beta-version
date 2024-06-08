@@ -12,10 +12,10 @@ main: "obv.obvJavaMod"
 
 #the mod description as seen in the mod dialog
 description: "加入了许多有趣的东西
-v0.1.0 bulit"
+v0.1.1 built"
 
 #the mod version
-version: 0.1.0
+version: 0.1.1
 
 #the minimum game build required to run this mod
 minGameVersion: 146
