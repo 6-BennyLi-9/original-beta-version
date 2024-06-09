@@ -23,7 +23,7 @@ public class ModFactories extends ModBlocksUtils{
         disCharger.hasItems = true;
 
         batteryBuilder.craftTime = 60f;
-        charger.craftTime = 10f;
+        charger.craftTime = 60f;
         disCharger.itemDuration = 60f;
 
         batteryBuilder.hasPower = true;
