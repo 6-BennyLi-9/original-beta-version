@@ -11,9 +11,7 @@ author: "Benny_Li"
 main: "obv.obvJavaMod"
 
 #the mod description as seen in the mod dialog
-description: "加入了许多有趣的东西
-Add many intersting things.
-v0.1.1 built"
+description: "加入了许多有趣的东西Add many interesting things."
 
 #the mod version
 version: 0.1.1
