@@ -7,7 +7,7 @@ import mindustry.world.blocks.production.*;
 import mindustry.world.meta.*;
 import obv.ItemAndLiquid.*;
 
-public class ModFactories extends ModBlocksUtils{
+public class ModFactoriesInterface extends ModBlocksUtilsInterface {
     public GenericCrafter batteryBuilder, charger;
     public assemblyGenerator disCharger;
 
@@ -44,7 +44,7 @@ public class ModFactories extends ModBlocksUtils{
         new ItemStack(Items.titanium, 80),
         new ItemStack(Items.graphite, 50),
         new ItemStack(Items.lead, 125),
-        new ItemStack(ModItems.iron, 30)
+        new ItemStack(ModItemsInterface.iron, 30)
         });
         charger.requirements(Category.crafting, BuildVisibility.shown, new ItemStack[]{
         new ItemStack(Items.surgeAlloy, 25),
@@ -52,7 +52,7 @@ public class ModFactories extends ModBlocksUtils{
         new ItemStack(Items.titanium, 80),
         new ItemStack(Items.graphite, 50),
         new ItemStack(Items.lead, 125),
-        new ItemStack(ModItems.iron, 30),
+        new ItemStack(ModItemsInterface.iron, 30),
         new ItemStack(Items.phaseFabric, 30)
         });
         disCharger.requirements(Category.crafting, BuildVisibility.shown, new ItemStack[]{
@@ -61,7 +61,7 @@ public class ModFactories extends ModBlocksUtils{
         new ItemStack(Items.titanium, 80),
         new ItemStack(Items.graphite, 50),
         new ItemStack(Items.lead, 125),
-        new ItemStack(ModItems.iron, 30),
+        new ItemStack(ModItemsInterface.iron, 30),
         new ItemStack(Items.phaseFabric, 15)
         });
 
@@ -70,20 +70,20 @@ public class ModFactories extends ModBlocksUtils{
         new ItemStack(Items.silicon, 3)
         });
         charger.consumeItems(new ItemStack[]{
-        new ItemStack(ModItems.emptyMobileBattery, 1)
+        new ItemStack(ModItemsInterface.emptyMobileBattery, 1)
         });
         disCharger.consumeItems(new ItemStack[]{
-        new ItemStack(ModItems.fullMobileBattery, 1)
+        new ItemStack(ModItemsInterface.fullMobileBattery, 1)
         });
 
         batteryBuilder.outputItems = new ItemStack[]{
-        new ItemStack(ModItems.emptyMobileBattery, 1)
+        new ItemStack(ModItemsInterface.emptyMobileBattery, 1)
         };
         charger.outputItems = new ItemStack[]{
-        new ItemStack(ModItems.fullMobileBattery, 1)
+        new ItemStack(ModItemsInterface.fullMobileBattery, 1)
         };
         disCharger.outputItems = new ItemStack[]{
-        new ItemStack(ModItems.emptyMobileBattery, 1)
+        new ItemStack(ModItemsInterface.emptyMobileBattery, 1)
         };
 
 

@@ -8,9 +8,9 @@ import mindustry.world.blocks.defense.ShieldWall;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.consumers.ConsumePower;
 import mindustry.world.meta.BuildVisibility;
-import obv.ItemAndLiquid.ModItems;
+import obv.ItemAndLiquid.ModItemsInterface;
 
-public class ModWalls extends ModBlocksUtils{
+public class ModWallsInterface extends ModBlocksUtilsInterface {
     //T1
     public Wall bigIronWall,smallIronWall;
     //T2
@@ -69,25 +69,25 @@ public class ModWalls extends ModBlocksUtils{
         bigIonicChargeWall.breakCooldown=20f*10f;
 
         bigIronWall.requirements(Category.defense,BuildVisibility.shown,new ItemStack[]{
-            new ItemStack(ModItems.iron,5),
-            new ItemStack(ModItems.glass,3),
+            new ItemStack(ModItemsInterface.iron,5),
+            new ItemStack(ModItemsInterface.glass,3),
             new ItemStack(Items.metaglass,3)
         });
         smallIronWall.requirements(Category.defense,BuildVisibility.shown,new ItemStack[]{
-            new ItemStack(ModItems.iron,20),
-            new ItemStack(ModItems.glass,12),
+            new ItemStack(ModItemsInterface.iron,20),
+            new ItemStack(ModItemsInterface.glass,12),
             new ItemStack(Items.metaglass,7)
         });
         bigIonicChargeWall.requirements(Category.defense,BuildVisibility.shown,new ItemStack[]{
-            new ItemStack(ModItems.glass,20),
-            new ItemStack(ModItems.ionicPhaseFabric,12),
+            new ItemStack(ModItemsInterface.glass,20),
+            new ItemStack(ModItemsInterface.ionicPhaseFabric,12),
             new ItemStack(Items.phaseFabric,8),
             new ItemStack(Items.silicon,8),
             new ItemStack(Items.surgeAlloy,12)
         });
         smallIonicChargeWall.requirements(Category.defense,BuildVisibility.shown,new ItemStack[]{
-            new ItemStack(ModItems.glass,5),
-            new ItemStack(ModItems.ionicPhaseFabric,4),
+            new ItemStack(ModItemsInterface.glass,5),
+            new ItemStack(ModItemsInterface.ionicPhaseFabric,4),
             new ItemStack(Items.phaseFabric,2),
             new ItemStack(Items.silicon,2),
             new ItemStack(Items.surgeAlloy,3)

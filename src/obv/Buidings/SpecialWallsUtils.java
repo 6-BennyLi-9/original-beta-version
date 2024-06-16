@@ -1,6 +1,6 @@
 package obv.Buidings;
 
-public class SpecialWallsUtils extends ModWalls{
+public class SpecialWallsUtils extends ModWallsInterface {
     private void initEvent(){
 
     }

@@ -1,10 +1,10 @@
 package obv.ItemAndLiquid;
 import arc.util.Log;
 import mindustry.type.Item;
-import obv.ModContent;
+import obv.ModContentInterface;
 import obv.ModUtils;
 
-public class ModItems implements ModContent {
+public class ModItemsInterface implements ModContentInterface {
     public static ModUtils utils;
 
     public static Item iron;
