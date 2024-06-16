@@ -4,7 +4,7 @@ import arc.util.*;
 import mindustry.type.*;
 import obv.*;
 
-public class ModLiquidsInterface implements ModContentInterface {
+public class ModLiquidsContent implements ModContentInterface {
     private static ModUtils utils;
 
     public static Liquid essentialOil;

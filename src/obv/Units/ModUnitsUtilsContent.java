@@ -3,7 +3,7 @@ package obv.Units;
 import arc.util.*;
 import obv.*;
 
-public class ModUnitsUtilsInterface implements ModContentInterface {
+public class ModUnitsUtilsContent implements ModContentInterface {
 
     @Override
     public void load(){

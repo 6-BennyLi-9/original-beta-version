@@ -2,12 +2,12 @@ package obv.Buidings;
 
 import arc.util.*;
 import obv.*;
-
-public class ModBlocksUtilsInterface implements ModContentInterface {
+//HEADER
+public class ModBlocksContent implements ModContentInterface {
     public void load(){
         Log.info("[OBV-BLOCKS]Start init");
-        ModWallsInterface utils_walls = new ModWallsInterface();
-        ModFactoriesInterface utils_factories = new ModFactoriesInterface();
+        ModWallsContent utils_walls = new ModWallsContent();
+        ModFactoriesContent utils_factories = new ModFactoriesContent();
 
         utils_walls.init();
         utils_factories.init();

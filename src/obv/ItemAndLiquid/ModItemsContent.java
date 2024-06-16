@@ -4,7 +4,7 @@ import mindustry.type.Item;
 import obv.ModContentInterface;
 import obv.ModUtils;
 
-public class ModItemsInterface implements ModContentInterface {
+public class ModItemsContent implements ModContentInterface {
     public static ModUtils utils;
 
     public static Item iron;

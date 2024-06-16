@@ -7,16 +7,16 @@ import obv.ItemAndLiquid.*;
 import obv.Units.*;
 
 public class obvJavaMod extends Mod{
-    public static ModItemsInterface modItems;
-    public static ModBlocksUtilsInterface modBlocksUtils;
-    public static ModLiquidsInterface modLiquids;
-    public static ModUnitsUtilsInterface modUnitsUtils;
+    public static ModItemsContent modItems;
+    public static ModBlocksContent modBlocksUtils;
+    public static ModLiquidsContent modLiquids;
+    public static ModUnitsUtilsContent modUnitsUtils;
 
     public static ModContentInterface[] modContentInterfaces = {
-    modItems = new ModItemsInterface(),
-    modBlocksUtils = new ModBlocksUtilsInterface(),
-    modLiquids = new ModLiquidsInterface(),
-    modUnitsUtils = new ModUnitsUtilsInterface()
+    modItems = new ModItemsContent(),
+    modBlocksUtils = new ModBlocksContent(),
+    modLiquids = new ModLiquidsContent(),
+    modUnitsUtils = new ModUnitsUtilsContent()
     };
 
     public obvJavaMod(){
