@@ -1,4 +1,4 @@
-package obv.Buidings;
+package obv.Buildings;
 
 import arc.util.*;
 import mindustry.content.*;
@@ -7,7 +7,7 @@ import mindustry.world.blocks.production.*;
 import mindustry.world.meta.*;
 import obv.ItemAndLiquid.*;
 
-public class ModFactoriesContent extends ModBlocksContent {
+public class ModFactoriesContent extends ModBuildingsContent{
     public GenericCrafter batteryBuilder, charger;
     public assemblyGenerator disCharger;
 

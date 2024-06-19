@@ -1,13 +1,13 @@
 package obv.Units;
 
-import mindustry.type.*;
+import obv.ClassTypes.*;
 
 public class ModUnits{
 
-    public static UnitType crystals;
+    public static OBV_UnitType crystals;
 
     private void initUnits(){
-        crystals = new UnitType("crystals"){
+        crystals = new OBV_UnitType("crystals", "crystals"){
             {
                 health = 80;
                 hitSize = 9;

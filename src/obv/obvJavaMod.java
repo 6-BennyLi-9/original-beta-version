@@ -2,19 +2,19 @@ package obv;
 
 import arc.util.*;
 import mindustry.mod.*;
-import obv.Buidings.*;
+import obv.Buildings.*;
 import obv.ItemAndLiquid.*;
 import obv.Units.*;
 
 public class obvJavaMod extends Mod{
     public static ModItemsContent modItems;
-    public static ModBlocksContent modBlocksUtils;
+    public static ModBuildingsContent modBlocksUtils;
     public static ModLiquidsContent modLiquids;
     public static ModUnitsUtilsContent modUnitsUtils;
 
     public static ModContentInterface[] modContentInterfaces = {
     modItems = new ModItemsContent(),
-    modBlocksUtils = new ModBlocksContent(),
+    modBlocksUtils = new ModBuildingsContent(),
     modLiquids = new ModLiquidsContent(),
     modUnitsUtils = new ModUnitsUtilsContent()
     };
@@ -27,7 +27,9 @@ public class obvJavaMod extends Mod{
     public void ModInit(){
         ModUtils.debugMode = false;
         for(ModContentInterface content : modContentInterfaces){
-            content.load();
+            if(content.enable()){
+                content.load();
+            }
         }
     }
 

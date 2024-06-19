@@ -4,7 +4,7 @@ import arc.util.*;
 import mindustry.type.*;
 import obv.*;
 
-public class ModLiquidsContent implements ModContentInterface {
+public class ModLiquidsContent implements ModContentInterface{
     private static ModUtils utils;
 
     public static Liquid essentialOil;
@@ -76,5 +76,10 @@ public class ModLiquidsContent implements ModContentInterface {
         setupLiquidColorConfig();
 
         Log.info("[OBV-LIQUIDS]DONE!");
+    }
+
+    @Override
+    public boolean enable(){
+        return true;
     }
 }

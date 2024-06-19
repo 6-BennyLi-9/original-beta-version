@@ -1,9 +1,10 @@
-package obv.Buidings;
+package obv.Buildings;
 
 import arc.util.*;
 import obv.*;
+
 //HEADER
-public class ModBlocksContent implements ModContentInterface {
+public class ModBuildingsContent implements ModContentInterface{
     public void load(){
         Log.info("[OBV-BLOCKS]Start init");
         ModWallsContent utils_walls = new ModWallsContent();
@@ -13,5 +14,10 @@ public class ModBlocksContent implements ModContentInterface {
         utils_factories.init();
 
         Log.info("[OBV-BLOCKS]Done!");
+    }
+
+    @Override
+    public boolean enable(){
+        return true;
     }
 }
