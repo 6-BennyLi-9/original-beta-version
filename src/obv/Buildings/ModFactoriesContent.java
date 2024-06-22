@@ -5,6 +5,7 @@ import mindustry.content.*;
 import mindustry.type.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.meta.*;
+import obv.ClassTypes.*;
 import obv.ItemAndLiquid.*;
 
 public class ModFactoriesContent extends ModBuildingsContent{

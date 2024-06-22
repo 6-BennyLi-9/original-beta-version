@@ -2,9 +2,13 @@ package obv;
 
 import arc.graphics.*;
 import arc.util.*;
+import mindustry.*;
+import mindustry.ui.dialogs.*;
 
 public class ModUtils{
     public static boolean debugMode = true;
+
+    public final ResearchDialog mindustryResearch = Vars.ui.research;
 
     public Color RGBColorSet100(double R, double G, double B){
         Color result;
