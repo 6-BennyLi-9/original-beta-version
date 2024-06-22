@@ -11,11 +11,10 @@ author: "Benny_Li"
 main: "obv.obvJavaMod"
 
 #the mod description as seen in the mod dialog
-description: "加入了许多有趣的东西
-v0.1.0 bulit"
+description: "加入了许多有趣的东西Add many interesting things."
 
 #the mod version
-version: 0.1.0
+version: 0.1.1
 
 #the minimum game build required to run this mod
 minGameVersion: 146
