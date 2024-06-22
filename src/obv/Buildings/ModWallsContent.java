@@ -8,7 +8,7 @@ import mindustry.world.consumers.*;
 import mindustry.world.meta.*;
 import obv.ItemAndLiquid.*;
 
-public class ModWallsContent implements ModBuildingsContentInterface{
+public class ModWallsContent extends ModBuildingsContent{
     //T1
     public Wall bigIronWall, smallIronWall;
     //T2
@@ -98,14 +98,8 @@ public class ModWallsContent implements ModBuildingsContentInterface{
         smallIonicChargeWall.buildCostMultiplier = 0.8f;
     }
 
-    @Override
-    public void load(){
+    public void init(){
         Log.info("[OBV-WALLS]Start");
         setupWallConfig();
-    }
-
-    @Override
-    public boolean enabled(){
-        return true;
     }
 }
