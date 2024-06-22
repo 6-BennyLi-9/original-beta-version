@@ -15,7 +15,7 @@ public class ModLiquidsContent implements ModContentInterface{
     public static Liquid superMagicalLiquid;
     public static Liquid tuno;
 
-    private void initLiquid(){
+    public ModLiquidsContent(){
         essentialOil = new Liquid("bioEssentialOil");
         tila = new Liquid("tila");
         tila_Beta = new Liquid("Beta-tila");
@@ -69,7 +69,6 @@ public class ModLiquidsContent implements ModContentInterface{
     public void load(){
         Log.info("[UBV-LIQUIDS]Start init");
         utils = new ModUtils();
-        initLiquid();
 
         Log.info("[UBV-LIQUIDS]Adding config");
         setupLiquidConfig();

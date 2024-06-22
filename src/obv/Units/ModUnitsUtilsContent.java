@@ -7,11 +7,10 @@ public class ModUnitsUtilsContent implements ModContentInterface{
     @Override
     public void load(){
 
-        Log.info("[OBV-UNITS]Start init");
+        Log.info("[OBV-UNITS]Start");
         ModUnits modUnits = new ModUnits();
 
         modUnits.init();
-        Log.info("[OBV-UNITS]DONE!");
     }
 
     @Override

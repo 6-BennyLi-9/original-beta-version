@@ -14,7 +14,7 @@ public class ModWallsContent extends ModBuildingsContent{
     //T2
     public ShieldWall bigIonicChargeWall, smallIonicChargeWall;
 
-    private void initWall(){
+    public ModWallsContent(){
         bigIronWall = new Wall("bigIronWall");
         smallIronWall = new Wall("smallIronWall");
         bigIonicChargeWall = new ShieldWall("bigIonicChargeWall");
@@ -99,12 +99,7 @@ public class ModWallsContent extends ModBuildingsContent{
     }
 
     public void init(){
-        Log.info("[OBV-WALLS]Start init");
-        initWall();
-
-        Log.info("[OBV-WALLS]Adding config");
+        Log.info("[OBV-WALLS]Start");
         setupWallConfig();
-
-        Log.info("[OBV-WALLS]Done!");
     }
 }

@@ -14,7 +14,7 @@ public class ModItemsContent implements ModContentInterface{
     public static Item emptyMobileBattery;
     private static final float unitCost = 2f;
 
-    private void initItem(){
+    public ModItemsContent(){
         iron = new Item("iron");
         glass = new Item("glass");
         ionicPhaseFabric = new Item("IonicPhaseFabric");
@@ -51,8 +51,6 @@ public class ModItemsContent implements ModContentInterface{
     public void load(){
         Log.info("[UBV-ITEMS]Start init");
         utils = new ModUtils();
-
-        initItem();
 
         Log.info("[UBV-ITEMS]Adding config");
         setupItemConfig();

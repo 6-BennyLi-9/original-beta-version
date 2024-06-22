@@ -12,7 +12,7 @@ public class ModFactoriesContent extends ModBuildingsContent{
     public GenericCrafter batteryBuilder, charger;
     public assemblyGenerator disCharger;
 
-    private void initFactory(){
+    public ModFactoriesContent(){
         batteryBuilder = new GenericCrafter("batteryBuilder");
         charger = new GenericCrafter("charger");
         disCharger = new assemblyGenerator("disCharger");
@@ -94,10 +94,7 @@ public class ModFactoriesContent extends ModBuildingsContent{
     }
 
     public void init(){
-        Log.info("[OBV-FACTORIES]Start init");
-        initFactory();
-
-        Log.info("[OBV-FACTORIES]Adding config");
+        Log.info("[OBV-FACTORIES]Start");
         setupFactoryConfig();
     }
 }
