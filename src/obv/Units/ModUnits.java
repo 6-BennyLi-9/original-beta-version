@@ -1,7 +1,5 @@
 package obv.Units;
 
-import obv.ClassTypes.*;
-
 public class ModUnits{
 
     public static OBV_UnitType crystals;

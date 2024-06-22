@@ -1,4 +1,4 @@
-package obv.ClassTypes;
+package obv.Units;
 
 import mindustry.*;
 import mindustry.type.*;

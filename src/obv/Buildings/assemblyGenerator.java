@@ -1,4 +1,4 @@
-package obv.ClassTypes;
+package obv.Buildings;
 
 import arc.*;
 import arc.graphics.*;
