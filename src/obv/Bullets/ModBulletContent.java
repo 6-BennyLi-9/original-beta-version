@@ -1,6 +1,5 @@
 package obv.Bullets;
 
-import mindustry.*;
 import mindustry.content.*;
 import mindustry.world.blocks.defense.turrets.*;
 import obv.ItemAndLiquid.*;
@@ -11,7 +10,7 @@ public class ModBulletContent implements ModContentInterface{
 
     public void initBullets(){
         powerOrb = new PowerOrb(5f, 20f){{
-            textureName = Vars.content.transformName("powerOrb");//注册内容名称
+            textureName = "obv-powerOrb";//注册内容名称
             lifetime = 50;//持续存在时长
         }};
     }
@@ -28,6 +27,6 @@ public class ModBulletContent implements ModContentInterface{
 
     @Override
     public boolean enable(){
-        return true;
+        return false;
     }
 }
