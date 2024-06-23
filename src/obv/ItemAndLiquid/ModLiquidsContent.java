@@ -15,16 +15,6 @@ public class ModLiquidsContent implements ModContentInterface{
     public static Liquid superMagicalLiquid;
     public static Liquid tuno;
 
-    public ModLiquidsContent(){
-        essentialOil = new Liquid("bioEssentialOil");
-        tila = new Liquid("tila");
-        tila_Beta = new Liquid("Beta-tila");
-        highPurityEssentialOil = new Liquid("HighPurityBioEssentialOil");
-        magicalLiquid = new Liquid("magicalLiquid");
-        superMagicalLiquid = new Liquid("superMagicalLiquid");
-        tuno = new Liquid("tuno");
-    }
-
     private void setupLiquidConfig(){
         //燃烧度
         essentialOil.flammability = 0.3f;
@@ -63,6 +53,17 @@ public class ModLiquidsContent implements ModContentInterface{
         magicalLiquid.color = utils.RGBColorSetWitchHTMLMark(0x220c47);
         superMagicalLiquid.color = utils.RGBColorSetWitchHTMLMark(0xff3700);
         tuno.color = utils.RGBColorSetWitchHTMLMark(0xcbaeff);
+    }
+
+    @Override
+    public void init(){
+        essentialOil = new Liquid("bioEssentialOil");
+        tila = new Liquid("tila");
+        tila_Beta = new Liquid("Beta-tila");
+        highPurityEssentialOil = new Liquid("HighPurityBioEssentialOil");
+        magicalLiquid = new Liquid("magicalLiquid");
+        superMagicalLiquid = new Liquid("superMagicalLiquid");
+        tuno = new Liquid("tuno");
     }
 
     @Override

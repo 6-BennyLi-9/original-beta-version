@@ -5,6 +5,11 @@ import obv.*;
 
 //HEADER
 public class ModBuildingsContent implements ModContentInterface{
+    @Override
+    public void init(){
+
+    }
+
     public void load(){
         Log.info("[OBV-BLOCKS]Start init");
         ModWallsContent utils_walls = new ModWallsContent();

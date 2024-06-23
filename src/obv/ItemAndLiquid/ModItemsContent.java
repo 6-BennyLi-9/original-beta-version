@@ -14,7 +14,8 @@ public class ModItemsContent implements ModContentInterface{
     public static Item emptyMobileBattery;
     private static final float unitCost = 2f;
 
-    public ModItemsContent(){
+    @Override
+    public void init(){
         iron = new Item("iron");
         glass = new Item("glass");
         ionicPhaseFabric = new Item("IonicPhaseFabric");
