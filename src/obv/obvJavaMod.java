@@ -27,6 +27,7 @@ public class obvJavaMod extends Mod{
         ModUtils.debugMode = false;
         for(ModContentInterface content : modContentInterfaces){
             if(content.enable()){
+                content.init();
                 content.load();
             }
         }
