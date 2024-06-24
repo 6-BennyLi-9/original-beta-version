@@ -35,7 +35,7 @@ public class ModFactoriesContent implements ModBuildingsContentInterface{
         charger.consumePower(100f);
         disCharger.outputsPower = true;
         disCharger.consumesPower = false;
-        disCharger.powerProduction = 100f;
+        disCharger.powerProduction = 95f;
 
         batteryBuilder.health = 320;
         charger.health = 450;
@@ -47,7 +47,7 @@ public class ModFactoriesContent implements ModBuildingsContentInterface{
         new ItemStack(Items.lead, 125),
         new ItemStack(ModItemsContent.iron, 30)
         });
-        charger.requirements(Category.crafting, BuildVisibility.shown, new ItemStack[]{
+        charger.requirements(Category.power, BuildVisibility.shown, new ItemStack[]{
         new ItemStack(Items.surgeAlloy, 25),
         new ItemStack(Items.silicon, 80),
         new ItemStack(Items.titanium, 80),
@@ -56,7 +56,7 @@ public class ModFactoriesContent implements ModBuildingsContentInterface{
         new ItemStack(ModItemsContent.iron, 30),
         new ItemStack(Items.phaseFabric, 30)
         });
-        disCharger.requirements(Category.crafting, BuildVisibility.shown, new ItemStack[]{
+        disCharger.requirements(Category.power, BuildVisibility.shown, new ItemStack[]{
         new ItemStack(Items.surgeAlloy, 30),
         new ItemStack(Items.silicon, 120),
         new ItemStack(Items.titanium, 80),
