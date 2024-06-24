@@ -8,7 +8,7 @@ import mindustry.world.consumers.*;
 import mindustry.world.meta.*;
 import obv.ItemAndLiquid.*;
 
-public class ModWallsContent extends ModBuildingsContent{
+public class ModWallsContent implements ModBuildingsContentInterface{
     //T1
     public Wall bigIronWall, smallIronWall;
     //T2
@@ -101,6 +101,15 @@ public class ModWallsContent extends ModBuildingsContent{
     public void init(){
         Log.info("[OBV-WALLS]Start");
         initWalls();
+    }
+
+    @Override
+    public void load(){
         setupWallConfig();
+    }
+
+    @Override
+    public boolean enable(){
+        return true;
     }
 }

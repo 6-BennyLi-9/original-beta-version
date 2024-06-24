@@ -8,7 +8,7 @@ import mindustry.world.meta.*;
 import obv.ClassTypes.*;
 import obv.ItemAndLiquid.*;
 
-public class ModFactoriesContent extends ModBuildingsContent{
+public class ModFactoriesContent implements ModBuildingsContentInterface{
     public GenericCrafter batteryBuilder, charger;
     public assemblyGenerator disCharger;
 
@@ -96,6 +96,15 @@ public class ModFactoriesContent extends ModBuildingsContent{
     public void init(){
         Log.info("[OBV-FACTORIES]Start");
         initFactories();
+    }
+
+    @Override
+    public void load(){
         setupFactoryConfig();
+    }
+
+    @Override
+    public boolean enable(){
+        return true;
     }
 }
