@@ -21,8 +21,12 @@ public class ModBulletContent implements ModContentInterface{
     }
 
     @Override
-    public void load(){
+    public void init(){
         initBullets();
+    }
+
+    @Override
+    public void load(){
         addBulletsToTurrets();
     }
 
